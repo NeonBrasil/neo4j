@@ -1,0 +1,16 @@
+CREATE (dep1:Department {name: "Computação"}),
+       (dep2:Department {name: "Matemática"});
+
+CREATE (prof1:Professor {name: "Carlos", id: 1}),
+       (prof2:Professor {name: "Ana", id: 2});
+
+CREATE (course1:Course {name: "Sistemas de Informação", code: "SI"}),
+       (course2:Course {name: "Matemática", code: "MAT"});
+
+CREATE (student1:Student {name: "João", id: 1}),
+       (student2:Student {name: "Maria", id: 2});
+
+CREATE (subj1:Subject {name: "Estrutura de Dados", code: "ED"}),
+       (subj2:Subject {name: "Cálculo I", code: "C1"});
+
+CREATE (curr1:Curriculum {year: 2020, version: 1});

@@ -1,5 +1,6 @@
 # neo4j
-
+Aluno: Cayque Cicarelli
+RA: 22221005-6
 ### O banco foi estruturado com os seguintes labels de nós e relacionamentos:
 
 ## Labels de Nós

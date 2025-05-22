@@ -42,6 +42,7 @@
 - Neo4j Desktop ou acesso ao Neo4j Browser
 **Passo a Passo**
 - Copie e cole os comandos de criação do modelo no Neo4j Browser presentes nos arquivos "CriacaoDeNos" e "relacionamentos" no Main
+- Para realizar consultas utilize os códigos do arquivo "Consultas"
 
 ![image](https://github.com/user-attachments/assets/493398e4-3aad-4ee5-8280-7e880d88f72f)
 

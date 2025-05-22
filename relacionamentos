@@ -1,0 +1,30 @@
+MATCH (d:Department {name: "Computação"}), (c:Course {name: "Sistemas de Informação"})
+CREATE (c)-[:BELONGS_TO]->(d);
+
+MATCH (d:Department {name: "Computação"}), (s:Subject {name: "Estrutura de Dados"})
+CREATE (s)-[:BELONGS_TO]->(d);
+
+MATCH (p:Professor {name: "Carlos"}), (d:Department {name: "Computação"})
+CREATE (p)-[:HEAD_OF]->(d);
+
+MATCH (c:Course {name: "Sistemas de Informação"}), (curr:Curriculum {year: 2020, version: 1})
+CREATE (c)-[:HAS_CURRICULUM]->(curr);
+
+MATCH (curr:Curriculum {year: 2020, version: 1}), (s:Subject)
+WHERE s.code IN ["ED", "C1"]
+CREATE (curr)-[:INCLUDES]->(s);
+
+MATCH (a:Student {name: "João"}), (c:Course {name: "Sistemas de Informação"})
+CREATE (a)-[:ENROLLED_IN]->(c);
+
+MATCH (a:Student {name: "João"}), (s:Subject {name: "Estrutura de Dados"})
+CREATE (a)-[:TOOK {year:2022, semester:1, final_grade:8.5}]->(s);
+
+MATCH (p:Professor {name: "Carlos"}), (s:Subject {name: "Estrutura de Dados"})
+CREATE (s)-[:TAUGHT_BY {year:2022, semester:1}]->(p);
+
+
+CREATE (tcc1:TCCGroup {title: "Aplicação de IA no Ensino", year:2023, semester:2});
+MATCH (a:Student {name: "João"}), (p:Professor {name: "Ana"}), (g:TCCGroup {title: "Aplicação de IA no Ensino"})
+CREATE (a)-[:MEMBER_OF]->(g),
+       (g)-[:ADVISED_BY]->(p);

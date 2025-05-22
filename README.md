@@ -43,4 +43,5 @@
 **Passo a Passo**
 - Copie e cole os comandos de criação do modelo no Neo4j Browser
 
-![image](https://github.com/user-attachments/assets/b9eefc07-914e-49ae-bea2-6d6bdd292402)
+![image](https://github.com/user-attachments/assets/493398e4-3aad-4ee5-8280-7e880d88f72f)
+

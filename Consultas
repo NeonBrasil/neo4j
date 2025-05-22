@@ -1,0 +1,36 @@
+Histórico escolar de qualquer aluno
+MATCH (a:Student {name: "João"})-[t:TOOK]->(s:Subject)
+RETURN s.code AS codigo, s.name AS disciplina, t.semester AS semestre, t.year AS ano, t.final_grade AS nota_final
+ORDER BY t.year, t.semester;
+
+
+Histórico de disciplinas ministradas por professor
+MATCH (s:Subject)-[t:TAUGHT_BY]->(p:Professor {name: "Carlos"})
+RETURN s.code AS codigo, s.name AS disciplina, t.year AS ano, t.semester AS semestre
+ORDER BY t.year, t.semester;
+
+
+Alunos formados em determinado semestre/ano
+MATCH (c:Course {code: "SI"})-[:HAS_CURRICULUM]->(curr:Curriculum)
+
+MATCH (curr)-[:INCLUDES]->(s:Subject)
+
+MATCH (a:Student)-[:ENROLLED_IN]->(c)
+WITH a, collect(s.code) AS disciplinas_necessárias
+
+MATCH (a)-[t:TOOK]->(s:Subject)
+WHERE t.final_grade >= 6.0 AND t.year = 2023 AND t.semester = 2
+WITH a, collect(s.code) AS cursadas, disciplinas_necessárias
+WHERE ALL(cod IN disciplinas_necessárias WHERE cod IN cursadas)
+RETURN a.name AS aluno_formado
+
+
+Professores chefes de departamento
+MATCH (p:Professor)-[:HEAD_OF]->(d:Department)
+RETURN p.name AS professor, d.name AS departamento;
+
+Grupos de TCC e seus orientadores
+MATCH (g:TCCGroup)<-[:MEMBER_OF]-(a:Student),
+      (g)-[:ADVISED_BY]->(p:Professor)
+RETURN g.title AS grupo_tcc, collect(a.name) AS alunos, p.name AS orientador;
+
